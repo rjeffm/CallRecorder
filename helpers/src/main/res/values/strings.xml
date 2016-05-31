@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Helpers</string>
+
+
+<string name="about_app"><![CDATA[<b><big>About This App!</big></b><br>
+<br><br>
+About Content <br>
+<br><br>
+Come visit us on the web at:<br>
+<a href="http://jlcsoftware.com/">http://jlcsoftware.com/</a><br>
+<br><br><br>
+<br>]]>
+</string>
+    <string name="about_title">About</string>
+    <string name="about_version">Version: </string>
+    <string name="about_model">OVERRIDE_FOR_MODEL</string>
+    <string name="about_deviceid">OVERRIDE_FOR_DEVICE_ID</string>
+
+
+    <string name="rate_me_title">Rate this App</string>
+    <string name="rate_me_message">"If you enjoy using this app, please take a moment to rate it on Google Play. Thank you for your support!"</string>
+    <string name="rate_me_positive_btn">Rate App</string>
+    <string name="rate_me_negative_btn">Never</string>
+    <string name="rate_me_neutral_btn">Not Now</string>
+
+</resources>

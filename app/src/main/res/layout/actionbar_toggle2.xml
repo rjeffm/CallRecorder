@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.SwitchCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/switch1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textOff="@string/toggle_off"
+    android:textOn="@string/toggle_on"
+    android:thumbTextPadding="25dp"
+    app:showText="true"
+    android:gravity="center"
+    android:switchPadding="5dp"
+    app:switchPadding="5dp"
+    app:thumbTextPadding="5dp"
+    app:theme="@style/SwitchStyle" />
+

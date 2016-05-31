@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.jlcsoftware.callrecorder">
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <!-- Admob -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Billing for in-app purchases -->
+    <uses-permission android:name="com.android.vending.BILLING" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <receiver
+            android:name="com.jlcsoftware.receivers.MyCallReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:priority="0">
+            <intent-filter android:priority="1000">
+                <action android:name="android.intent.action.PHONE_STATE" />
+                <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
+            </intent-filter>
+        </receiver>
+
+        <!--
+        android:enabled="false" to prevent system creation... Actually, not needed here at all since it is only used internally...
+        <receiver
+            android:name="com.jlcsoftware.receivers.MyBroadcastReceiver"
+            android:enabled="false"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.jlcsoftware.NEW_RECORDING_ACTION" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.jlcsoftware.RECORDING_DELETED_BROADCAST" />
+            </intent-filter>
+        </receiver>
+        -->
+        <activity
+            android:name=".WhitelistActivity"
+            android:parentActivityName=".MainActivity" />
+        <!-- The meta-data element is needed for versions lower than 4.1 -->
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.jlcsoftware.callrecorder.MainActivity" />
+
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.jlcsoftware.callrecorder.MainActivity" />
+        </activity>
+
+        <service
+            android:name="com.jlcsoftware.services.RecordCallService"
+            android:exported="false" />
+        <service
+            android:name="com.jlcsoftware.services.CleanupService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <receiver
+            android:name="com.jlcsoftware.receivers.MyAlarmReceiver"
+            android:enabled="true"
+            android:exported="true"></receiver>
+    </application>
+
+</manifest>

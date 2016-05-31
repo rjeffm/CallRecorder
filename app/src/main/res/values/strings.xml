@@ -1,0 +1,92 @@
+<resources>
+
+    <string name="app_name">Call Recorder</string>
+
+    <string name="about_app"><![CDATA[
+<h1>Call Recorder
+</h1><br>
+Automatic Phone Call Recorder<br>
+<p><br>
+Is there something missing from this app? Please let us know!<br>
+<br>
+Come visit us on the web at: <a href="http://jlcsoftware.com">http://jlcsoftware.com</a><br>
+</p>
+<p><small>Credits:<br>
+<div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+<div>Icons made by <a href="http://www.flaticon.com/authors/simpleicon" title="SimpleIcon">SimpleIcon</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+<div>Icons made by <a href="http://www.flaticon.com/authors/dave-gandy" title="Dave Gandy">Dave Gandy</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+</small>
+]]></string>
+
+    <string name="action_about">About</string>
+    <string name="action_delete_all">Delete All</string>
+    <string name="action_delete">Delete Selected</string>
+    <string name="action_share">Share Selected</string>
+    <string name="action_buy_now">Purchase</string>
+    <string name="action_save">Save Selected</string>
+
+
+    <string name="buy_now_title">Purchase</string>
+    <string name="buy_now_no_support">We are sorry, this option is not available. Google Play Services must be installed.</string>
+    <string name="buy_now_no_adds">Tired of Ads? Make them go away with a one-time purchase!</string>
+
+    <string name="buy_now_success">Success! Ads will be removed when the app is restarted!</string>
+
+
+    <string name="action_add">Add Contact</string>
+    <string name="email_title">Call Recording</string>
+    <string name="email_body">Recording created with Call Recorder by JLCreative Software</string>
+    <string name="email_body_html"><![CDATA[<p>Recording created with Call Recorder by JLCreative Software<br>Download it today from <a
+href="https://play.google.com/store/apps/developer?id=JL+Creative+Software">Google Play</a></p>]]></string>
+    <string name="action_settings">Settings</string>
+    <string name="action_whitelist">Exclude List</string>
+    <string name="add_contact">Add Contact</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <string name="press_back_again">"Press BACK once more to exit"</string>
+    <string name="incoming">Incoming</string>
+    <string name="outgoing">Outgoing</string>
+    <string name="all">All</string>
+
+    <string name="delete_recording_title">Delete Recording</string>
+    <string name="delete_recording_subject">Are you sure you want to delete the recording(s)?</string>
+    <string name="delete_whitelist_title">Remove Contact</string>
+    <string name="delete_whitelist_subject">Are you sure you want to remove this excluded contact(s)?</string>
+    <string name="delete_all_recording_subject">Are you sure you want to delete ALL the recordings?</string>
+    <string name="dialog_yes">Yes</string>
+    <string name="dialog_no">No</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="toggle_off">Off</string>
+    <string name="toggle_on">On</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <string name="pref_incoming_calls">Record Incoming Calls</string>
+    <string name="pref_outgoing_calls">Record Outgoing Calls</string>
+    <string name="pref_storage_category">Storage</string>
+    <string name="pref_location">Storage:</string>
+    <string name="pref_folder_name">Folder: \"calls\"</string>
+    <string name="pref_folder_total_files"><![CDATA[Total Recordings: <b>%d</b>]]></string>
+    <string name="pref_folder_total_files_size"><![CDATA[Total used storage: <b>%d KB</b>]]></string>
+    <string name="pref_folder_total_folder_size"><![CDATA[Available storage: <b>%1.2f MB</b>]]></string>
+    <string name="pref_automatic_cleaning_category">Automatic Cleaning</string>
+    <string name="pref_automatic_cleaning_frequency">Delete Recordings:</string>
+    <string name="pref_automatic_cleaning_now">Clean Now</string>
+    <string name="pref_recording_category">Recording</string>
+
+    <string-array name="pref_frequencies">
+        <item name="never">Never</item>
+        <item name="daily">Daily</item>
+        <item name="daily">Every 3 days</item>
+        <item name="daily">Weekly</item>
+        <item name="daily">Monthly</item>
+        <item name="daily">Quarterly</item>
+    </string-array>
+
+    <string name="notification_title">New Recording</string>
+    <string name="notification_text">A Phone Call has been Recorded.</string>
+    <string name="notification_more_text">Select to play</string>
+
+    <string name="action_remove">Remove Contact</string>
+
+
+</resources>
