@@ -1,12 +1,15 @@
 package com.jlcsoftware.callrecorder;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -42,8 +45,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements RecordingFragment.OnListFragmentInteractionListener, MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener, MediaController.MediaPlayerControl {
 
-    final String key = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkbbMJELv8nAP/7T9/6NyOzPJqiDwqM7trTh1qSCCTgioXksFfMLweEOKnrUQfWtNxFQ53NSM2v+qp8WuNTWA77ozkaKVINl/DyrSXD/DT39W6202IzCj4idNoSWhUg3hO/QsJWZfRe4eGwfj5F8dC320HovgX5czQ0KSLEjfpsseroQmIDbi32evkIMeVihG4bXcmO4WXI0kYvXAhGJTzJtd06lLFzusYkm9m9c4W/ZlwMesUIvAw7pOLBrgGq5zeNjFu0srFGHI0a7+lopaE3aOnVZQGZHIpyppiQnMIujpXVEdZKzBix3lTQmjD8zETpAMDq2xbemF361C/Pvx6QIDAQAB";
-
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -67,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements RecordingFragment
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        checkPermissions();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -293,8 +295,15 @@ public class MainActivity extends AppCompatActivity implements RecordingFragment
         }
 
         if (R.id.action_whitelist == id) {
-            Intent intent = new Intent(this, WhitelistActivity.class);
-            startActivity(intent);
+            if(permissionReadContacts) {
+                Intent intent = new Intent(this, WhitelistActivity.class);
+                startActivity(intent);
+            }else{
+                AlertDialog.Builder alert = new AlertDialog.Builder(
+                        this);
+                alert.setTitle(R.string.permission_whitelist_title);
+                alert.setMessage(R.string.permission_whitelist);
+            }
             return true;
         }
         if (R.id.action_about == id) {
@@ -454,6 +463,55 @@ public class MainActivity extends AppCompatActivity implements RecordingFragment
         mp.reset();
         mediaController.hide();
         mediaController.setEnabled(false);
+    }
+
+
+    boolean permissionReadContacts;
+
+    public void checkPermissions() {
+        permissionReadContacts = ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED;
+
+        if (!permissionReadContacts)
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
+
+                // Should we show an explanation?
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                        Manifest.permission.READ_CONTACTS)) {
+
+                    // Show an expanation to the user *asynchronously* -- don't block
+                    // this thread waiting for the user's response! After the user
+                    // sees the explanation, try again to request the permission.
+                    new android.app.AlertDialog.Builder(this).setCancelable(true).setMessage(R.string.str_access_permissions).setPositiveButton(R.string.dialog_ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ActivityCompat.requestPermissions(MainActivity.this,
+                                    new String[]{Manifest.permission.READ_CONTACTS},
+                                    0x01);
+                        }
+                    }).show();
+
+                } else {
+
+                    // No explanation needed, we can request the permission.
+
+                    ActivityCompat.requestPermissions(this,
+                            new String[]{Manifest.permission.READ_CONTACTS},
+                            0x01);
+
+                }
+            }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case 0x01: {  // validateRequestPermissionsRequestCode in FragmentActivity requires requestCode to be of 8 bits, meaning the range is from 0 to 255.
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0) { // we only asked for one permission
+                        permissionReadContacts = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                }
+            }
+        }
     }
 
 

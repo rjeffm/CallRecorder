@@ -25,6 +25,8 @@ Come visit us on the web at: <a href="http://jlcsoftware.com">http://jlcsoftware
     <string name="action_buy_now">Purchase</string>
     <string name="action_save">Save Selected</string>
 
+    <string name="error_path_missing">Storage Path Invalid</string>
+
 
     <string name="buy_now_title">Purchase</string>
     <string name="buy_now_no_support">We are sorry, this option is not available. Google Play Services must be installed.</string>
@@ -55,10 +57,16 @@ href="https://play.google.com/store/apps/developer?id=JL+Creative+Software">Goog
     <string name="delete_all_recording_subject">Are you sure you want to delete ALL the recordings?</string>
     <string name="dialog_yes">Yes</string>
     <string name="dialog_no">No</string>
+    <string name="dialog_ok">Ok</string>
     <string name="dialog_cancel">Cancel</string>
+
+    <string name="permission_whitelist_title">Missing Permission</string>
+    <string name="permission_whitelist">The Exlcude List requires permission to read your contacts. Please grant "Read Contacts" permission to this app.</string>
     <string name="toggle_off">Off</string>
     <string name="toggle_on">On</string>
     <string name="title_activity_settings">Settings</string>
+
+    <string name="str_access_permissions">Call Recorder needs access to your contacts to identify your call recordings and prevent selected contacts from being recorded.</string>
 
     <string name="pref_incoming_calls">Record Incoming Calls</string>
     <string name="pref_outgoing_calls">Record Outgoing Calls</string>
@@ -76,10 +84,10 @@ href="https://play.google.com/store/apps/developer?id=JL+Creative+Software">Goog
     <string-array name="pref_frequencies">
         <item name="never">Never</item>
         <item name="daily">Daily</item>
-        <item name="daily">Every 3 days</item>
-        <item name="daily">Weekly</item>
-        <item name="daily">Monthly</item>
-        <item name="daily">Quarterly</item>
+        <item name="3days">Every 3 days</item>
+        <item name="weekly">Weekly</item>
+        <item name="monthly">Monthly</item>
+        <item name="quarterly">Quarterly</item>
     </string-array>
 
     <string name="notification_title">New Recording</string>

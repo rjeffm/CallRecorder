@@ -1,8 +1,10 @@
 package com.jlcsoftware.callrecorder;
 
+import android.Manifest;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -10,6 +12,7 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.ContactsContract;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
@@ -283,31 +286,39 @@ public class MyRecordingRecyclerViewAdapter extends RecyclerView.Adapter<MyRecor
         String name = null;
         String contactId = null;
         InputStream input = null;
+        String phoneNumber = record.getPhoneCall().getPhoneNumber();
+        if (null == phoneNumber || phoneNumber.isEmpty()) return;
+        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED)
+            return;
 
-        // define the columns the query should return
-        String[] projection = new String[]{ContactsContract.PhoneLookup.DISPLAY_NAME, ContactsContract.PhoneLookup._ID};
-        // encode the phone number and build the filter URI
-        Uri contactUri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(record.getPhoneCall().getPhoneNumber()));
-        // query time
-        Cursor cursor = context.getContentResolver().query(contactUri, projection, null, null, null);
+        try {
+            // define the columns the query should return
+            String[] projection = new String[]{ContactsContract.PhoneLookup.DISPLAY_NAME, ContactsContract.PhoneLookup._ID};
+            // encode the phone number and build the filter URI
+            Uri contactUri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(phoneNumber));
+            // query time
+            Cursor cursor = context.getContentResolver().query(contactUri, projection, null, null, null);
 
-        if (cursor.moveToFirst()) {
-            // Get values from contacts database:
-            contactId = cursor.getString(cursor.getColumnIndex(ContactsContract.PhoneLookup._ID));
-            record.setContactId(contactId);
-            name = cursor.getString(cursor.getColumnIndex(ContactsContract.PhoneLookup.DISPLAY_NAME));
-            record.setName(name);
+            if (cursor.moveToFirst()) {
+                // Get values from contacts database:
+                contactId = cursor.getString(cursor.getColumnIndex(ContactsContract.PhoneLookup._ID));
+                record.setContactId(contactId);
+                name = cursor.getString(cursor.getColumnIndex(ContactsContract.PhoneLookup.DISPLAY_NAME));
+                record.setName(name);
 
-            // Already in the cache?
-            if (null == record.getImage()) { // no...
-                // Get photo of contactId as input stream:
-                Uri uri = ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, Long.parseLong(contactId));
-                input = ContactsContract.Contacts.openContactPhotoInputStream(context.getContentResolver(), uri);
-                if (null != input) {
-                    BitmapDrawable drawable = new BitmapDrawable(context.getResources(), input);
-                    record.setImage(drawable);
+                // Already in the cache?
+                if (null == record.getImage()) { // no...
+                    // Get photo of contactId as input stream:
+                    Uri uri = ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, Long.parseLong(contactId));
+                    input = ContactsContract.Contacts.openContactPhotoInputStream(context.getContentResolver(), uri);
+                    if (null != input) {
+                        BitmapDrawable drawable = new BitmapDrawable(context.getResources(), input);
+                        record.setImage(drawable);
+                    }
                 }
             }
+        } catch (Exception e) {
+
         }
     }
 
