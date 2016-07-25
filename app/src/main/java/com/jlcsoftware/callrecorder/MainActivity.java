@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements RecordingFragment
         switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                AppPreferences.getInstance(MainActivity.this).setRecordingEnables(isChecked);
+                AppPreferences.getInstance(MainActivity.this).setRecordingEnabled(isChecked);
             }
         });
         switchCompat.setChecked(AppPreferences.getInstance(MainActivity.this).isRecordingEnabled());

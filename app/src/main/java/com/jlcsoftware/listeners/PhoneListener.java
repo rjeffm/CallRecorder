@@ -38,6 +38,10 @@ public class PhoneListener extends PhoneStateListener {
         return instance;
     }
 
+    public static boolean hasInstance() {
+        return null != instance;
+    }
+
     private final Context context;
     private CallLog phoneCall;
 

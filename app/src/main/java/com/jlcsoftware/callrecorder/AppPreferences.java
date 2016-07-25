@@ -53,7 +53,7 @@ public class AppPreferences {
      *
      * @param enabled true/false
      */
-    public void setRecordingEnables(boolean enabled) {
+    public void setRecordingEnabled(boolean enabled) {
         preferences.edit().putBoolean("RecordingEnabled", enabled).commit();
     }
 
