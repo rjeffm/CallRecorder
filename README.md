@@ -1,4 +1,4 @@
-# CallRecorder
+# CallRecorder - Unsupported - Use at your own risk 
 Automatic Phone Call Recorder for Android
 
 An automatic phone call recorder, records ALL calls your phone gets. You can choose to not record some of your contacts, or you can record every call. Schedule
